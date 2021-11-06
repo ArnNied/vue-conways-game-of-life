@@ -1,9 +1,18 @@
 <script setup>
+import { ref } from "vue";
+
+import Config from "/src/components/Config.vue";
 import Header from "/src/components/Header.vue";
+
+const config = ref(null);
 </script>
 
 <template>
-	<Header />
+  <div class="flex flex-col">
+    <Header />
+    <Config ref="config" />
+  </div>
 </template>
 
-<style></style>
+<style>
+</style>
