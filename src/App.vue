@@ -6,10 +6,14 @@ import Config from "/src/components/Config.vue";
 import Control from "/src/components/Control.vue";
 import Header from "/src/components/Header.vue";
 
-const config = ref(null);
-
+const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
+
+function boardCreate(size) {
+  board.value.width = size.width;
+  board.value.height = size.height;
+}
 
 function simulationControl() {
   console.log("simulationProcess");
@@ -24,16 +28,13 @@ function clearOrReset() {
 <template>
   <div class="flex flex-col">
     <Header />
-    <Config ref="config" />
+    <Config @board-create="boardCreate" />
     <Control
       @simulation-control="simulationControl"
       @creset="clearOrReset"
       :simulation-process="simulationProcess"
       :current-cycle="currentCycle"
     />
-    <Board :config="config" />
+    <Board :board="board" />
   </div>
 </template>
-
-<style>
-</style>

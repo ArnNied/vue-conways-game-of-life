@@ -2,25 +2,24 @@
 import BoardCell from "/src/components/BoardCell.vue";
 
 const props = defineProps({
-  config: {
+  board: {
     type: Object,
   },
 });
 </script>
 
 <template>
-  <div class="flex flex-col mx-auto">
+  <div class="flex flex-col mx-auto p-4">
     <div
-      v-for="i in config.board.height"
+      v-for="i in board.height"
       :key="i"
       class="flex flex-row"
     >
       <BoardCell
-        v-for="j in config.board.width"
-        :key="(i - 1) * config.board.width + j"
-        :cellNumber="(i - 1) * config.board.width + j"
+        v-for="j in board.width"
+        :key="(i - 1) * board.width + j"
+        :cellNumber="(i - 1) * board.width + j"
       />
     </div>
   </div>
-
 </template>

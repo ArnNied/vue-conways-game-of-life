@@ -1,23 +1,13 @@
 <script setup>
 import { ref } from "vue";
 
-const board = ref({ width: 0, height: 0 });
 const localBoard = ref({ width: 30, height: 10 });
-
-function createBoard() {
-  board.value.width = localBoard.value.width;
-  board.value.height = localBoard.value.height;
-}
-
-defineExpose({
-  board,
-});
 </script>
 
 <template>
   <form
-    @submit.prevent="createBoard"
-    class="flex flex-row justify-center p-8 space-x-8"
+    @submit.prevent="$emit('board-create', localBoard)"
+    class="flex flex-row justify-center p-4 space-x-8"
   >
     <div class="flex flex-row items-center space-x-2">
       <p class="text-white">Width:</p>
