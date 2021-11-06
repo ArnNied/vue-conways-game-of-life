@@ -11,7 +11,7 @@
         name="config-width"
         id="config-width"
         placeholder="Board Width"
-        class="p-1 rounded-sm"
+        class="px-2 py-1 rounded-sm"
       />
     </div>
     <div class="flex flex-row items-center space-x-2">
@@ -22,7 +22,7 @@
         name="config-height"
         id="config-Height"
         placeholder="Board Height"
-        class="p-1 rounded-sm"
+        class="px-2 py-1 rounded-sm"
       />
     </div>
     <div class="flex items-center">
