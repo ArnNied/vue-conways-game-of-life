@@ -19,6 +19,6 @@ function handleClick() {
   <span
     @click="handleClick"
     :class="[cellState ? 'bg-white' : 'bg-black']"
-    class="flex flex-row p-3 border border-solid border-white"
+    class="flex flex-row p-2.5 border border-solid border-white"
   ></span>
 </template>
