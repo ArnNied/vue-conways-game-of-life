@@ -1,3 +1,17 @@
+<template>
+  <div class="flex flex-col">
+    <Header />
+    <Config @board-create="boardCreate" />
+    <Control
+      @simulation-control="simulationControl"
+      @creset="clearOrReset"
+      :simulation-process="simulationProcess"
+      :current-cycle="currentCycle"
+    />
+    <Board :board="board" />
+  </div>
+</template>
+
 <script setup>
 import { ref } from "vue";
 
@@ -24,17 +38,3 @@ function clearOrReset() {
   console.log("creset");
 }
 </script>
-
-<template>
-  <div class="flex flex-col">
-    <Header />
-    <Config @board-create="boardCreate" />
-    <Control
-      @simulation-control="simulationControl"
-      @creset="clearOrReset"
-      :simulation-process="simulationProcess"
-      :current-cycle="currentCycle"
-    />
-    <Board :board="board" />
-  </div>
-</template>

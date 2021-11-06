@@ -1,9 +1,3 @@
-<script setup>
-import { ref } from "vue";
-
-const localBoard = ref({ width: 30, height: 10 });
-</script>
-
 <template>
   <form
     @submit.prevent="$emit('board-create', localBoard)"
@@ -41,3 +35,9 @@ const localBoard = ref({ width: 30, height: 10 });
     </div>
   </form>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const localBoard = ref({ width: 30, height: 10 });
+</script>

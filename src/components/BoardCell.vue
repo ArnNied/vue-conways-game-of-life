@@ -1,3 +1,11 @@
+<template>
+  <span
+    @click="handleClick"
+    :class="[cellState ? 'bg-white' : 'bg-black']"
+    class="flex flex-row p-2.5 border border-solid border-white"
+  ></span>
+</template>
+
 <script setup>
 import { ref } from "@vue/reactivity";
 
@@ -14,11 +22,3 @@ function handleClick() {
   cellState.value = !cellState.value;
 }
 </script>
-
-<template>
-  <span
-    @click="handleClick"
-    :class="[cellState ? 'bg-white' : 'bg-black']"
-    class="flex flex-row p-2.5 border border-solid border-white"
-  ></span>
-</template>

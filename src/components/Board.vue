@@ -1,13 +1,3 @@
-<script setup>
-import BoardCell from "/src/components/BoardCell.vue";
-
-const props = defineProps({
-  board: {
-    type: Object,
-  },
-});
-</script>
-
 <template>
   <div class="flex flex-col mx-auto p-4">
     <div
@@ -23,3 +13,13 @@ const props = defineProps({
     </div>
   </div>
 </template>
+
+<script setup>
+import BoardCell from "/src/components/BoardCell.vue";
+
+const props = defineProps({
+  board: {
+    type: Object,
+  },
+});
+</script>

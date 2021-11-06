@@ -1,16 +1,3 @@
-<script setup>
-const props = defineProps({
-  simulationProcess: {
-    type: Boolean,
-    default: false,
-  },
-  currentCycle: {
-    type: Number,
-    default: 0,
-  },
-});
-</script>
-
 <template>
   <div class="flex flex-row justify-center p-4 space-x-4">
     <div class="flex">
@@ -32,3 +19,16 @@ const props = defineProps({
 
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  simulationProcess: {
+    type: Boolean,
+    default: false,
+  },
+  currentCycle: {
+    type: Number,
+    default: 0,
+  },
+});
+</script>
