@@ -1,6 +1,6 @@
 <template>
   <span
-    @click="handleClick"
+    @click="cellClick(cellNumber)"
     :class="[cellState ? 'bg-white' : 'bg-black']"
     class="flex flex-row p-2.5 border border-solid border-white"
   ></span>
@@ -15,10 +15,12 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits(["cell-click"]);
+
 const cellState = ref(false);
 
-function handleClick() {
-  console.log(props.cellNumber);
+function cellClick(cellNum) {
   cellState.value = !cellState.value;
+  emit("cell-click", cellNum);
 }
 </script>

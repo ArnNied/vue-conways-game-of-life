@@ -9,6 +9,7 @@
         v-for="j in board.width"
         :key="(i - 1) * board.width + j"
         :cellNumber="(i - 1) * board.width + j"
+        @cell-click="cellClick"
       />
     </div>
   </div>
@@ -22,4 +23,10 @@ const props = defineProps({
     type: Object,
   },
 });
+
+const emit = defineEmits(["cell-click"]);
+
+function cellClick(cellNum) {
+  emit("cell-click", cellNum);
+}
 </script>

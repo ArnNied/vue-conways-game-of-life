@@ -8,7 +8,10 @@
       :simulation-process="simulationProcess"
       :current-cycle="currentCycle"
     />
-    <Board :board="board" />
+    <Board
+      :board="board"
+      @cell-click="cellClick"
+    />
   </div>
 </template>
 
@@ -23,6 +26,10 @@ import Header from "/src/components/Header.vue";
 const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
+
+function cellClick(cellNumber) {
+  console.log(cellNumber);
+}
 
 function boardCreate(size) {
   board.value.width = size.width;
