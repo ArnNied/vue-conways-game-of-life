@@ -17,7 +17,7 @@ const props = defineProps({
     <BoardCell
       v-for="j in config.board.width"
       :key="j"
-      :cellNumber="(i - 1) * config.board.height + j"
+      :cellNumber="(i - 1) * config.board.width + j"
     />
   </div>
 </template>
