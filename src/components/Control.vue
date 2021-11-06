@@ -3,7 +3,8 @@
     <div class="flex">
       <button
         @click="$emit('simulation-control')"
-        class="p-2 bg-gray-900 text-white rounded"
+        :class="[simulationProcess ? 'bg-red-600' : 'bg-green-600']"
+        class="px-2 py-1 text-white rounded-sm"
       >
         {{simulationProcess ? 'Pause' : 'Start'}}
       </button>
@@ -11,7 +12,8 @@
     <div class="flex">
       <button
         @click="$emit('creset')"
-        class="p-2 bg-gray-900 text-white rounded"
+        :class="[currentCycle ? 'bg-yellow-600' : 'bg-red-600']"
+        class="px-2 py-1 text-white rounded-sm"
       >
         {{currentCycle ? 'Reset' : 'Clear'}}
       </button>
