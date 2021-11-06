@@ -9,6 +9,7 @@
         v-for="j in board.width"
         :key="(i - 1) * board.width + j"
         :cellNumber="(i - 1) * board.width + j"
+				:cellState="boardState.includes((i - 1) * board.width + j) ? true : false"
         @cell-click="cellClick"
       />
     </div>
@@ -22,6 +23,9 @@ const props = defineProps({
   board: {
     type: Object,
   },
+	boardState: {
+		type: Array,
+	}
 });
 
 const emit = defineEmits(["cell-click"]);

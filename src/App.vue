@@ -10,6 +10,7 @@
     />
     <Board
       :board="board"
+      :board-state="boardState"
       @cell-click="cellClick"
     />
   </div>
@@ -26,9 +27,16 @@ import Header from "/src/components/Header.vue";
 const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
+const boardState = ref([]);
 
-function cellClick(cellNumber) {
-  console.log(cellNumber);
+function cellClick(cellNum) {
+  if (boardState.value.includes(cellNum)) {
+    boardState.value = boardState.value.filter((val) => val !== cellNum);
+    console.log(`cell ${cellNum} removed`);
+  } else {
+    boardState.value.push(cellNum);
+    console.log(`cell ${cellNum} added`);
+  }
 }
 
 function boardCreate(size) {
