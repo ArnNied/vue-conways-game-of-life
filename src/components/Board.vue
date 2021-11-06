@@ -9,15 +9,18 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    v-for="i in config.board.height"
-    :key="i"
-    class="flex flex-row"
-  >
-    <BoardCell
-      v-for="j in config.board.width"
-      :key="j"
-      :cellNumber="(i - 1) * config.board.width + j"
-    />
+  <div class="flex flex-col mx-auto">
+    <div
+      v-for="i in config.board.height"
+      :key="i"
+      class="flex flex-row"
+    >
+      <BoardCell
+        v-for="j in config.board.width"
+        :key="(i - 1) * config.board.width + j"
+        :cellNumber="(i - 1) * config.board.width + j"
+      />
+    </div>
   </div>
+
 </template>
