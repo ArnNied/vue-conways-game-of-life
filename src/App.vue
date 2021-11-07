@@ -91,9 +91,6 @@ function getSurroundingOfCurrentlyAliveCell(cells) {
     }
   });
 
-  // const surroundingWithoutAlive = [...surrounding].filter(
-  //   (val) => !boardState.value.has(val)
-  // );
   return new Set(surrounding);
 }
 
@@ -107,7 +104,6 @@ function setCellNextCycle(pendingCheck) {
       [...surroundingAlive].filter((x) => boardState.value.has(x))
     );
 
-    console.log(`cell ${cell}, surround ${intersect.size}`)
     if (intersect.size === 3) {
       willBeAlive.add(cell);
     }
