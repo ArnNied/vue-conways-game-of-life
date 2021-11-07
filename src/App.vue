@@ -40,17 +40,18 @@ onMounted(() => {
 });
 
 function cycle() {
-  const surrounding = getSurroundingOfCurrentlyAliveCell();
+  const surrounding = getSurroundingOfCurrentlyAliveCell([...boardState.value]);
   const toBeChecked = new Set([...surrounding, ...boardState.value]);
-  console.log(toBeChecked);
+
+  setCellNextCycle(toBeChecked);
   currentCycle.value++;
 }
 
-function getSurroundingOfCurrentlyAliveCell() {
+function getSurroundingOfCurrentlyAliveCell(cells) {
   const surrounding = new Set();
   const boardFullSize = board.value.width * board.value.height;
 
-  boardState.value.forEach((cell) => {
+  cells.forEach((cell) => {
     const left = cell - 1;
     const right = cell + 1;
 
@@ -90,10 +91,32 @@ function getSurroundingOfCurrentlyAliveCell() {
     }
   });
 
-  const surroundingWithoutAlive = [...surrounding].filter(
-    (val) => !boardState.value.has(val)
-  );
-  return surroundingWithoutAlive;
+  // const surroundingWithoutAlive = [...surrounding].filter(
+  //   (val) => !boardState.value.has(val)
+  // );
+  return new Set(surrounding);
+}
+
+function setCellNextCycle(pendingCheck) {
+  const willBeAlive = new Set();
+
+  pendingCheck.forEach((cell) => {
+    const surroundingAlive = getSurroundingOfCurrentlyAliveCell([cell]);
+
+    const intersect = new Set(
+      [...surroundingAlive].filter((x) => boardState.value.has(x))
+    );
+
+    console.log(`cell ${cell}, surround ${intersect.size}`)
+    if (intersect.size === 3) {
+      willBeAlive.add(cell);
+    }
+    if (boardState.value.has(cell) && intersect.size === 2 || intersect.size === 3) {
+      willBeAlive.add(cell)
+    }
+  });
+
+  boardState.value = willBeAlive;
 }
 
 function cellClick(cellNum) {
