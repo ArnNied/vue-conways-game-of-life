@@ -28,8 +28,8 @@ import Header from "/src/components/Header.vue";
 const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
-const initialBoardState = ref([]);
-const boardState = ref([]);
+const initialBoardState = ref(new Set());
+const boardState = ref(new Set());
 
 onMounted(() => {
   setInterval(() => {
@@ -41,11 +41,11 @@ onMounted(() => {
 });
 
 function cellClick(cellNum) {
-  if (boardState.value.includes(cellNum)) {
+  if (boardState.value.has(cellNum)) {
     boardState.value = boardState.value.filter((val) => val !== cellNum);
     console.log(`cell ${cellNum} removed`);
   } else {
-    boardState.value.push(cellNum);
+    boardState.value.add(cellNum);
     console.log(`cell ${cellNum} added`);
   }
 }
@@ -59,7 +59,6 @@ function simulationControl() {
   console.log("simulationProcess");
   if (currentCycle.value === 0) {
     initialBoardState.value = boardState.value;
-    console.log(initialBoardState.value);
   }
   simulationProcess.value = !simulationProcess.value;
 }
@@ -70,7 +69,7 @@ function clearOrReset() {
     currentCycle.value = 0;
     boardState.value = initialBoardState.value;
   } else {
-    boardState.value = [];
+    boardState.value.clear();
   }
 }
 </script>

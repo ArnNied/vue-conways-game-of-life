@@ -11,7 +11,7 @@
           v-for="j in board.width"
           :key="(i - 1) * board.width + j"
           :cellNumber="(i - 1) * board.width + j"
-          :cellState="boardState.includes((i - 1) * board.width + j) ? true : false"
+          :cellState="boardState.has((i - 1) * board.width + j) ? true : false"
           @cell-click="cellClick"
         />
       </div>
@@ -28,7 +28,7 @@ const props = defineProps({
     type: Object,
   },
   boardState: {
-    type: Array,
+    type: Set,
   },
   currentCycle: {
     type: Number,
