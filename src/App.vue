@@ -34,15 +34,71 @@ const boardState = ref(new Set());
 onMounted(() => {
   setInterval(() => {
     if (simulationProcess.value) {
-      console.log("cycle");
-      currentCycle.value += 1;
+      cycle();
     }
   }, 350);
 });
 
+function cycle() {
+  const surrounding = getSurroundingOfCurrentlyAliveCell();
+  const toBeChecked = new Set([...surrounding, ...boardState.value]);
+  console.log(toBeChecked);
+  currentCycle.value++;
+}
+
+function getSurroundingOfCurrentlyAliveCell() {
+  const surrounding = new Set();
+  const boardFullSize = board.value.width * board.value.height;
+
+  boardState.value.forEach((cell) => {
+    const left = cell - 1;
+    const right = cell + 1;
+
+    if (left > 0 && cell % board.value.width !== 1) {
+      surrounding.add(left);
+    }
+    if (right < boardFullSize && cell % board.value.width !== 0) {
+      surrounding.add(right);
+    }
+
+    const up = cell - board.value.width;
+    const upLeft = up - 1;
+    const upRight = up + 1;
+
+    if (up > 0) {
+      surrounding.add(up);
+      if (up % board.value.width !== 1) {
+        surrounding.add(upLeft);
+      }
+      if (up % board.value.width !== 0) {
+        surrounding.add(upRight);
+      }
+    }
+
+    const down = cell + board.value.width;
+    const downLeft = down - 1;
+    const downRight = down + 1;
+
+    if (down < boardFullSize) {
+      surrounding.add(down);
+      if (down % board.value.width !== 1) {
+        surrounding.add(downLeft);
+      }
+      if (down % board.value.width !== 0) {
+        surrounding.add(downRight);
+      }
+    }
+  });
+
+  const surroundingWithoutAlive = [...surrounding].filter(
+    (val) => !boardState.value.has(val)
+  );
+  return surroundingWithoutAlive;
+}
+
 function cellClick(cellNum) {
   if (boardState.value.has(cellNum)) {
-    boardState.value = boardState.value.filter((val) => val !== cellNum);
+    boardState.value.delete(cellNum);
     console.log(`cell ${cellNum} removed`);
   } else {
     boardState.value.add(cellNum);
