@@ -28,6 +28,7 @@ import Header from "/src/components/Header.vue";
 const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
+const initialBoardState = ref([]);
 const boardState = ref([]);
 
 onMounted(() => {
@@ -56,13 +57,20 @@ function boardCreate(size) {
 
 function simulationControl() {
   console.log("simulationProcess");
+  if (currentCycle.value === 0) {
+    initialBoardState.value = boardState.value;
+    console.log(initialBoardState.value);
+  }
   simulationProcess.value = !simulationProcess.value;
 }
 
 function clearOrReset() {
   console.log("creset");
   if (currentCycle.value !== 0) {
-    currentCycle.value = 0
+    currentCycle.value = 0;
+    boardState.value = initialBoardState.value;
+  } else {
+    boardState.value = [];
   }
 }
 </script>
