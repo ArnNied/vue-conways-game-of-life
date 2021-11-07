@@ -19,14 +19,14 @@
       <a
         href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"
         target="_blank"
-        class="text-sm text-white hover:underline"
+        class="text-sm text-white focus:text-gray-300 hover:underline"
       >
         What is "John Conway's Game of Life"?
       </a>
       <a
         href="https://github.com/ArnNied/vue-conways-game-of-life"
         target="_blank"
-        class="text-sm text-white hover:underline"
+        class="text-sm text-white focus:text-gray-300 hover:underline"
       >
         Source Code
       </a>
