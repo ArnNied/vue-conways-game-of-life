@@ -28,7 +28,7 @@
     <div class="flex items-center">
       <button
         type="submit"
-        class="px-2 py-1 bg-gray-800 text-white rounded-sm"
+        class="px-2 py-1 bg-gray-800 hover:bg-gray-700 focus:bg-gray-900 text-white rounded-sm"
       >
         Build
       </button>
