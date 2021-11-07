@@ -1,19 +1,23 @@
 <template>
-  <div class="flex flex-col mx-auto p-4">
-    <div
-      v-for="i in board.height"
-      :key="i"
-      class="flex flex-row"
-    >
-      <BoardCell
-        v-for="j in board.width"
-        :key="(i - 1) * board.width + j"
-        :cellNumber="(i - 1) * board.width + j"
-				:cellState="boardState.includes((i - 1) * board.width + j) ? true : false"
-        @cell-click="cellClick"
-      />
+  <div class="flex flex-col">
+    <h2 class="flex mx-auto text-white">Cycle: {{currentCycle}}</h2>
+    <div class="flex flex-col mx-auto p-4">
+      <div
+        v-for="i in board.height"
+        :key="i"
+        class="flex flex-row"
+      >
+        <BoardCell
+          v-for="j in board.width"
+          :key="(i - 1) * board.width + j"
+          :cellNumber="(i - 1) * board.width + j"
+          :cellState="boardState.includes((i - 1) * board.width + j) ? true : false"
+          @cell-click="cellClick"
+        />
+      </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -23,9 +27,12 @@ const props = defineProps({
   board: {
     type: Object,
   },
-	boardState: {
-		type: Array,
-	}
+  boardState: {
+    type: Array,
+  },
+  currentCycle: {
+    type: Number,
+  },
 });
 
 const emit = defineEmits(["cell-click"]);

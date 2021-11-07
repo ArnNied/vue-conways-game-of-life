@@ -9,15 +9,16 @@
       :current-cycle="currentCycle"
     />
     <Board
+      @cell-click="cellClick"
       :board="board"
       :board-state="boardState"
-      @cell-click="cellClick"
+      :currentCycle="currentCycle"
     />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import Board from "/src/components/Board.vue";
 import Config from "/src/components/Config.vue";
@@ -28,6 +29,15 @@ const board = ref({ width: 0, height: 0 });
 const simulationProcess = ref(false);
 const currentCycle = ref(0);
 const boardState = ref([]);
+
+onMounted(() => {
+  setInterval(() => {
+    if (simulationProcess.value) {
+      console.log("cycle");
+      currentCycle.value += 1;
+    }
+  }, 350);
+});
 
 function cellClick(cellNum) {
   if (boardState.value.includes(cellNum)) {
@@ -51,5 +61,8 @@ function simulationControl() {
 
 function clearOrReset() {
   console.log("creset");
+  if (currentCycle.value !== 0) {
+    currentCycle.value = 0
+  }
 }
 </script>
